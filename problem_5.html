@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Problem 5</title>
+    </head>
+    <body>
+        <script>
+            var sumOfOddTerms = 0;
+            var previousFibonacci = 1;
+            var currentFibonacci = 2;
+            var temp = 0;
+            var term = 2;
+            
+            while(currentFibonacci <= 200000000){
+                //console.log(currentFibonacci);
+                temp = currentFibonacci;
+                currentFibonacci += previousFibonacci;
+                previousFibonacci = temp;
+                term++;
+
+                if(currentFibonacci % 2 !== 0){
+                    sumOfOddTerms += currentFibonacci   
+                }
+            }
+            console.log("Sum of the odd terms: " + sumOfOddTerms);
+        </script>
+    </body>
+</html>

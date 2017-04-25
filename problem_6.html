@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Problem 6</title>
+</head>
+
+<body>
+    <script>
+        //PROMPT: Have the user come up with a number between 1 and 100 (inclusive), but not enter it into the computer. Have the computer guess numbers in that same range, and ask the user if that is the number (e.g. “Is 40 your number?”). You can use prompt text (propmt("is 40 your number")) to accomplish this. If the number is too high, have the user enter “H”. If the number is too low, have the user enter “L”. If the computer guessed the number, have the user enter “Y”, and start a new game. Can you write an efficient algorithm so that the computer will find your number in the minimum number of guesses?
+
+        var LOWER_LIMIT = 1;
+        var UPPER_LIMIT = 100;
+        var usersNumber = 0;
+        var computersLatestGuess = 0;
+        var numberOfGuesses = 0;
+        var currentUpperBound = UPPER_LIMIT;
+        var currentLowerBound = LOWER_LIMIT;
+
+        usersNumber = prompt("Enter a number between " + LOWER_LIMIT + " and " + UPPER_LIMIT);
+        computersLatestGuess = prompt("Enter a number between " + LOWER_LIMIT + " and " + UPPER_LIMIT + " that the computer might guess: ");
+        //Make sure input is a number (caused issues in testing)
+        computersLatestGuess = parseFloat(computersLatestGuess);
+        numberOfGuesses++;
+
+        do {
+            var highOrLow = prompt("The computer guesses " + computersLatestGuess + ". Is this too high or too low? (Enter 'h' if it is too low enter 'l') ");
+            if (highOrLow === "h") {
+                //If a guess is too high, we can set that now as the new upperbound for guessing
+                currentUpperBound = computersLatestGuess;
+                //Split the difference between the current guess and the bound to see how much to add or subtract from guess
+                computersLatestGuess -= (computersLatestGuess - currentLowerBound) / 2;
+                numberOfGuesses++;
+            } else if (highOrLow === 'l') {
+                //If a guess is too low, we can set that now as the new lowerbound for guessing
+                currentLowerBound = computersLatestGuess;
+                computersLatestGuess += (currentUpperBound - computersLatestGuess) / 2;
+                numberOfGuesses++;
+            } else {
+                alert("Invalid input");
+            }
+        }
+        while (usersNumber !== computersLatestGuess)
+        alert("Computer guessed the user's number of: " + computersLatestGuess + " in " + numberOfGuesses + " guesses.");
+
+    </script>
+</body>
+
+</html>
