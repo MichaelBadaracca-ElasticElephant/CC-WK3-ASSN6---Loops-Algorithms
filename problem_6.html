@@ -18,30 +18,36 @@
         var currentLowerBound = LOWER_LIMIT;
 
         usersNumber = prompt("Enter a number between " + LOWER_LIMIT + " and " + UPPER_LIMIT);
-        computersLatestGuess = prompt("Enter a number between " + LOWER_LIMIT + " and " + UPPER_LIMIT + " that the computer might guess: ");
+        //Generate a random number between the LOWER_LIMIT and the UPPER_LIMIT as the computer's guess
+        computersLatestGuess = Math.floor(Math.random()*UPPER_LIMIT-LOWER_LIMIT) + LOWER_LIMIT;
         //Make sure input is a number (caused issues in testing)
         computersLatestGuess = parseFloat(computersLatestGuess);
         numberOfGuesses++;
 
         do {
-            var highOrLow = prompt("The computer guesses " + computersLatestGuess + ". Is this too high or too low? (Enter 'h' if it is too low enter 'l') ");
+            var highOrLow = prompt("The computer guesses " + computersLatestGuess + ". Is this too high, too low, or correct ? (Enter 'h' if it is too high, 'l' if it is too low, or 'c' if it is correct) ");
             if (highOrLow === "h") {
                 //If a guess is too high, we can set that now as the new upperbound for guessing
                 currentUpperBound = computersLatestGuess;
-                //Split the difference between the current guess and the bound to see how much to add or subtract from guess
-                computersLatestGuess -= (computersLatestGuess - currentLowerBound) / 2;
+                //Split the difference between the current guess and the bound to see how much to add or subtract from guess.
+                //Math.floor is being used to ensure we only use whole number for guesses
+                computersLatestGuess -= Math.floor((computersLatestGuess - currentLowerBound) / 2);
                 numberOfGuesses++;
             } else if (highOrLow === 'l') {
                 //If a guess is too low, we can set that now as the new lowerbound for guessing
                 currentLowerBound = computersLatestGuess;
-                computersLatestGuess += (currentUpperBound - computersLatestGuess) / 2;
+                computersLatestGuess += Math.floor((currentUpperBound - computersLatestGuess) / 2);
                 numberOfGuesses++;
-            } else {
+            }else if(highOrLow === 'c'){
+                alert("Computer guessed the user's number of: " + computersLatestGuess + " in " + numberOfGuesses + " guesses.");
+                break;
+            } 
+            else {
                 alert("Invalid input");
             }
         }
         while (usersNumber !== computersLatestGuess)
-        alert("Computer guessed the user's number of: " + computersLatestGuess + " in " + numberOfGuesses + " guesses.");
+        
 
     </script>
 </body>

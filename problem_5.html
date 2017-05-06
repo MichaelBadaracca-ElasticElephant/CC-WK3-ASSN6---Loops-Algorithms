@@ -9,20 +9,26 @@
             var previousFibonacci = 1;
             var currentFibonacci = 2;
             var temp = 0;
-            var term = 2;
-            
-            while(currentFibonacci <= 200000000){
-                //console.log(currentFibonacci);
+            var ENDING_POINT = 2000000;
+
+            while(sumOfOddTerms <= ENDING_POINT){
+                //store the current term in a temp variable
+                //it is preserved so the current and alst can be added to produce the next term
+                //and the current becomes the last term
                 temp = currentFibonacci;
                 currentFibonacci += previousFibonacci;
                 previousFibonacci = temp;
-                term++;
 
-                if(currentFibonacci % 2 !== 0){
+                //if the current term is odd, add it to the sum of odd Fibonacci numbers
+                if(currentFibonacci % 2 === 1){
+                    console.log(currentFibonacci);
                     sumOfOddTerms += currentFibonacci   
                 }
             }
             console.log("Sum of the odd terms: " + sumOfOddTerms);
+            //test
+            console.log(sumOfOddTerms === 2435421);
+
         </script>
     </body>
 </html>

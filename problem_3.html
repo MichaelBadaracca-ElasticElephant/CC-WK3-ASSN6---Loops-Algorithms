@@ -5,13 +5,29 @@
     </head>
     <body>
         <script>
-            for(var count = 0; count < 8; count++){
-                if(count % 2 === 0){
-                    console.log(" # # # #");
-                }else{
-                    console.log("# # # # ");
+            var NUMBER_OF_ROWS = 8;
+            var NUMBER_OF_COLUMNS = 8;
+
+            //Build a row
+            for(var rowCount = 0; rowCount < NUMBER_OF_ROWS; rowCount++){
+                //reset each row at the start of the loop
+                var row = "";
+                //give the row an offset on every other row to get the offset checker pattern
+                if(rowCount % 2 == 0){
+                    row += " ";
                 }
+                //build each cell in a row
+                for(var colInRowCount = 0; colInRowCount < NUMBER_OF_COLUMNS; colInRowCount++){
+                    //add each cell in row by alternating between solid and blank spaces on every other space
+                    if(colInRowCount % 2 === 0){
+                        row += "#";
+                    }else{
+                        row += " ";
+                    }
+                }
+                console.log(row); 
             }
+
         </script>
     </body>
 </html>
